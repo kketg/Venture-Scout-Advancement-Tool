@@ -7,4 +7,4 @@ def yeetiguess():
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port="79125676486786786756787854")
+    app.run(host="0.0.0.0", port="yeet")
