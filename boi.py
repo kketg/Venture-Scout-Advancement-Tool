@@ -1,9 +1,9 @@
-from flask import Flask
+from flask import *
 app = Flask(__name__)
 
 @app.route('/')
 def yeetiguess():
-    return 'yeet'
+    return render_templates("index.html")
 
 
 if __name__ == '__main__':
