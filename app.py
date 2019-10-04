@@ -11,11 +11,21 @@ def yeetiguess():
     return render_template("template.html",header="Home")
 
 @app.errorhandler(404)
-def fof():
-    return render_template(header="Error: 404",
+def fof(e):
+    return render_template("template.html",header="Error: 404",
     body="""<p>Couldn't find what you were looking for.<br>If you
     typed the URL manually, please check it carefully.<br>Otherwise,
     please get in touch with the developer at """ + error_contact + "</p>")
+
+@app.errorhandler(500)
+def fof(e):
+    return render_template("template.html",header="Error: 500",
+    body="""
+    <p>Something's gone wrong in the code. As this app is in beta,
+    chances are, you did nothing wrong. Please try again, but
+    if you keep getting this message, please email:""" + error_contact + "</p>")
+
+
 
 @app.route('/ranks')
 def allranks():
