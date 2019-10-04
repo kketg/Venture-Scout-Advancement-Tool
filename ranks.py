@@ -24,6 +24,11 @@ class rankload:
     def getallreqs(self,rank):
         file = self.path + self.s + rank + ".txt"
         return self.getlines(file)
+    def getallranks(self):
+        names = []
+        for file in os.listdir(self.path):
+            names.append(file.replace(".txt",""))
+        return names
     def getnums(self,rank):
         file = self.path + self.s + rank + ".txt"
         lines = self.getlines(file)
@@ -42,6 +47,8 @@ class rankload:
 
 if __name__ == "__main__":
     r = rankload()
+    # List all rank files we have 
+    print(r.getallranks())
     # Get just the numbers of each requirement, not the text w/ them
     print(r.getnums('discovery'))
     # Get the numbers and their descriptions
