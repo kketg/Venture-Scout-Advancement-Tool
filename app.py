@@ -34,6 +34,12 @@ def err(e):
     chances are, you did nothing wrong. Please try again, but
     if you keep getting this message, please email:""" + error_contact + "</p>")
 
+# Method to mark requirement of rank done for user
+@app.route("/md/<un>/<rank>/<req>/")
+def md(un,rank,req):
+    status = db.markcomplete(un,rank,req)
+    return render_template("template.html",header="Output of DB Command",body="<p>" + status + "</p>")
+
 # Method to display a page of all requirements for user
 @app.route("/adv/<un>/<passw>/")
 def adv(un,passw):
