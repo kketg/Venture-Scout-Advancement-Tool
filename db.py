@@ -81,6 +81,37 @@ class database:
                     backtostr += "\n" + line
             with open(rankfile,"w") as f:
                 f.write(backtostr)
+    def checkrankcomplete(self,username,rank):
+        scoutpath = self.dbp + username
+        rankfile = scoutpath + self.s + rank + ".txt"
+        if check(rankfile):
+            with open(rankfile) as f:
+                bois = f.read()
+            if bois == "" or bois == "\n":
+                return True
+            else:
+                return False
+    def checkpassw(self,user,passw):
+        scoutpath = self.dbp + user
+        pwp = scoutpath + self.s + "passw"
+        if check(pwp):
+            with open(pwp) as f:
+                correct = f.read()
+            if correct == passw:
+                return True
+            else:
+                return False
+        else:
+            return False
+    def getincomplete(self,user,rank):
+        scoutpath = self.dbp + user
+        rankfile = scoutpath + self.s + rank + ".txt"
+        if check(rankfile):
+            with open(rankfile) as f:
+                bois = f.read()
+            return bois.split("\n")
+        else:
+            return "Couldn't get rank file " + rank + " for " + user
 
 
 if __name__ == "__main__":
