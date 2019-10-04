@@ -9,7 +9,7 @@ def check(p):
         return False
 
 class database:
-    def __init__(self):
+    def __init__(self,aduser,apass):
         self.rm = rankload()
         if os.name == "nt":
             self.s = "\\"
@@ -18,6 +18,19 @@ class database:
         self.dbp = "data"+self.s+"db"+self.s
         if not check(self.dbp):
             os.makedirs(self.dbp)
+            with open(self.dbp + self.s + "auser","w") as f:
+                f.write(aduser)
+            with open(self.dbp + self.s + "apass","w") as f:
+                f.write(apass)
+    def authadmin(self,auser,apass):
+        with open(self.dbp + self.s + "auser") as f:
+            cau = f.read()
+        with open(self.dbp + self.s + "apass") as f:
+            cap = f.read()
+        if aduser != cau or apass != cap:
+            return False
+        else:
+            return True
     def addscout(self,username,password,disp_name):
         scoutpath = self.dbp + username
         if not check(scoutpath):
@@ -71,7 +84,8 @@ class database:
 
 
 if __name__ == "__main__":
-    d = database()
+    # Args only matter if creating DB for first time. Otherwise, these must match the ones that already are saved
+    d = database("root","toor")
     # Add scout with params
     # Requirements are remove-once-done (e.g. todo file should be empty if a scout has achieved summit)
     print(d.addscout("dummyscout","samplepassword","John Doe"))
