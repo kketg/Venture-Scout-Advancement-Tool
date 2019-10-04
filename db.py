@@ -54,6 +54,21 @@ class database:
         os.remove(pwf)
         with open(pwf,"w") as f:
             f.write(newpassword)
+    def markcomplete(self,username,rank,requirement):
+        scoutpath = self.dbp + username
+        rankfile = scoutpath + self.s + rank + ".txt"
+        if check(rankfile):
+            with open(rankfile) as f:
+                incomp = f.read()
+            os.remove(rankfile)
+            lines = incomp.split("\n")
+            backtostr = ""
+            for line in lines:
+                if line != requirement:
+                    backtostr += "\n" + line
+            with open(rankfile,"w") as f:
+                f.write(backtostr)
+
 
 if __name__ == "__main__":
     d = database()
@@ -64,3 +79,5 @@ if __name__ == "__main__":
     print(d.changepassword("dummyscout","samplepassword","newsamplepassword"))
     # Admin type of password reset (b/c doesn't require old password {would want to include email if we wanted self-reset but im lazy xd})
     d.setpassword("dummyscout","dummythicc")
+    # Mark requirement 10 of discovery complete for scout (acc. means delete from relevant file {but whatever})
+    d.markcomplete("dummyscout","discovery","10")
