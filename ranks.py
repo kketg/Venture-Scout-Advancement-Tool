@@ -21,6 +21,9 @@ class rankload:
                 raw = f.read()
             lines = raw.split("\n")
             return lines
+    def getallreqs(self,rank):
+        file = self.path + self.s + rank + ".txt"
+        return self.getlines(file)
     def getnums(self,rank):
         file = self.path + self.s + rank + ".txt"
         lines = self.getlines(file)
@@ -39,4 +42,7 @@ class rankload:
 
 if __name__ == "__main__":
     r = rankload()
+    # Get just the numbers of each requirement, not the text w/ them
     print(r.getnums('discovery'))
+    # Get the numbers and their descriptions
+    print(str(r.getallreqs('discovery')))

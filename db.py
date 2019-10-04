@@ -51,6 +51,9 @@ class database:
 
 if __name__ == "__main__":
     d = database()
+    # Add scout with params
     print(d.addscout("dummyscout","samplepassword","John Doe"))
+    # Change password type of password reset (requires correct old password)
     print(d.changepassword("dummyscout","samplepassword","newsamplepassword"))
+    # Admin type of password reset (b/c doesn't require old password {would want to include email if we wanted self-reset but im lazy xd})
     d.setpassword("dummyscout","dummythicc")
