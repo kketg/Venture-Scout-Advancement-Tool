@@ -18,7 +18,7 @@ def fof(e):
     please get in touch with the developer at """ + error_contact + "</p>")
 
 @app.errorhandler(500)
-def fof(e):
+def err(e):
     return render_template("template.html",header="Error: 500",
     body="""
     <p>Something's gone wrong in the code. As this app is in beta,
