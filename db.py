@@ -26,6 +26,12 @@ class database:
                 f.write(password)
             with open(scoutpath+self.s+"dname","w") as f:
                 f.write(disp_name)
+            for rank in self.rm.getallranks():
+                str = ""
+                for requirement in self.rm.getnums(rank):
+                    str += "\n" + requirement
+                with open(scoutpath+self.s+rank+".txt","w") as f:
+                    f.write(str)
             return "Created " + disp_name
         else:
             return disp_name + " already exists. Did you mean to reset password?"
@@ -52,6 +58,7 @@ class database:
 if __name__ == "__main__":
     d = database()
     # Add scout with params
+    # Requirements are remove-once-done (e.g. todo file should be empty if a scout has achieved summit)
     print(d.addscout("dummyscout","samplepassword","John Doe"))
     # Change password type of password reset (requires correct old password)
     print(d.changepassword("dummyscout","samplepassword","newsamplepassword"))
