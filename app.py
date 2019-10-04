@@ -3,15 +3,21 @@ from ranks import rankload
 from db import database
 
 app = Flask(__name__)
+
+# Create instance of boi that knows rank requirements
 rm = rankload()
+# Create instance of DB manager
 db = database("root","toor")
 
+# Add this email to error pages
 error_contact = "matt@mattcompton.me"
 
+# Render homepage w/ default template
 @app.route('/')
 def yeetiguess():
     return render_template("template.html",header="Home")
 
+# Return a 404 page if user does an oopsie
 @app.errorhandler(404)
 def fof(e):
     return render_template("template.html",header="Error: 404",
@@ -19,6 +25,7 @@ def fof(e):
     typed the URL manually, please check it carefully.<br>Otherwise,
     please get in touch with the developer at """ + error_contact + "</p>")
 
+# Return a 500 page if me or Krii does an oopsie
 @app.errorhandler(500)
 def err(e):
     return render_template("template.html",header="Error: 500",
@@ -27,6 +34,7 @@ def err(e):
     chances are, you did nothing wrong. Please try again, but
     if you keep getting this message, please email:""" + error_contact + "</p>")
 
+# Method to display a page of all requirements for user
 @app.route("/adv/<un>/<passw>/")
 def adv(un,passw):
     if db.checkpassw(un,passw):
@@ -42,6 +50,8 @@ def adv(un,passw):
                 notc.append(rank)
 
         # for each rank that's in the incomplete list, add to list to display
+        # want to replace with tables at some point
+        # see: https://www.w3schools.com/html/html_tables.asp
         todos = """"""
         for rank in notc:
             this = "<h4>" + rank + " todo:</h4><br><ul>"
@@ -63,15 +73,17 @@ def adv(un,passw):
         else:
             done += "<p>Sorry, no ranks complete. :(</p>"
 
+        # Return finished page to user
         return render_template("template.html",header="Stats for " + un,
         body = "<h3>Complete: </h3><hr>" + done + "<br><h3>Incomplete:</h3><hr>" + todos)
     else:
+        # If wrong password, tell user they dumb
         return render_template("template.html",header="Password oopsie",
         body="<p>Wrong password for " + un + "</p>")
 
 
 
-
+# Return a page generated from all the available ranks
 @app.route('/ranks')
 def allranks():
     bodi = ""
