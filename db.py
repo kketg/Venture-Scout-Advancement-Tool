@@ -37,7 +37,7 @@ class database:
                 with open(self.dbp + self.s + "apass") as f:
                     cap = f.read()
                 # if either user or password is wrong, don't let them in
-                if aduser != cau or apass != cap:
+                if auser != cau or apass != cap:
                     return False
                 # Only if both are true, allow user to pass
                 else:

@@ -1,6 +1,16 @@
 from flask import *
 from ranks import rankload
 from db import database
+from todo import td
+from sup import pageloader
+
+import os
+
+def check(p):
+    if os.path.exists(p):
+        return True
+    else:
+        return False
 
 app = Flask(__name__)
 
@@ -8,6 +18,10 @@ app = Flask(__name__)
 rm = rankload()
 # Create instance of DB manager
 db = database("root","toor")
+# Create rankpage-generator
+todo = td()
+# PAgeloader instance
+pl = pageloader()
 
 # Add this email to error pages
 error_contact = "matt@mattcompton.me"
@@ -15,7 +29,8 @@ error_contact = "matt@mattcompton.me"
 # Render homepage w/ default template
 @app.route('/')
 def yeetiguess():
-    return render_template("template.html",header="Home")
+    ac = pl.gethtml("main")
+    return render_template("template.html",header="Home",body=ac)
 
 # Return a 404 page if user does an oopsie
 @app.errorhandler(404)
@@ -40,54 +55,61 @@ def md(un,rank,req):
     status = db.markcomplete(un,rank,req)
     return render_template("template.html",header="Output of DB Command",body="<p>" + status + "</p>")
 
+# User auth form
+@app.route("/signin/user/")
+def usr_sign():
+    return render_template("signin.html",type="user")
+
+# Admin login form
+@app.route("/signin/admin/")
+def ad_sign():
+    return render_template("signin.html",type="admin")
+
+# Admin page auth (to hide admin login from URL bar)
+@app.route("/auth/admin/<username>/<password>/")
+def ad_redirect(username,password):
+    if db.authadmin(username,password):
+        with open("a_auth","w") as f:
+            f.write("ok")
+        return render_template("redirect.html",label="Admin Portal",destination="/management")
+    else:
+        return render_template("template.html",header="Error: Wrong login",body="<p>Seems you've typed the admin login incorrectly.</p>")
+
+# Actual admin page here (eventually)
+@app.route("/management")
+def m_portal():
+    if check("a_auth"):
+        os.remove("a_auth")
+        return "Getting there"
+    else:
+        return render_template("template.html",header="Error: Login",body="<p>Either you've refreshed the page<br>Or you've typed the admin login incorrectly.</p>")
+
 # Method to display a page of all requirements for user
 @app.route("/adv/<un>/<passw>/")
 def adv(un,passw):
     if db.checkpassw(un,passw):
-        complete = []
-        # list of all ranks in DB
-        all = rm.getallranks()
-        notc = []
-        for rank in all:
-            # Check if user has rank complete
-            if db.checkrankcomplete(un,rank):
-                complete.append(rank)
-            else:
-                notc.append(rank)
-
-        # for each rank that's in the incomplete list, add to list to display
-        # want to replace with tables at some point
-        # see: https://www.w3schools.com/html/html_tables.asp
-        todos = """"""
-        for rank in notc:
-            this = "<h4>" + rank + " todo:</h4><br><ul>"
-            # Display all incomplete reqs for rank
-            this_td = db.getincomplete(un,rank)
-            for td in this_td:
-                if td != " " and td != "" and td != "\n":
-                    this += "<li><p>" + td + "</p></li>"
-            this += "</ul>"
-            todos += this + "<hr>"
-
-        # for each complete rank, add to list
-        done = """"""
-        if complete:
-            done += "<ul>"
-            for rank in complete:
-                done += "<li><p>" + rank + "</p></li>"
-            done += "</ul>"
-        else:
-            done += "<p>Sorry, no ranks complete. :(</p>"
-
-        # Return finished page to user
-        return render_template("template.html",header="Stats for " + un,
-        body = "<h3>Complete: </h3><hr>" + done + "<br><h3>Incomplete:</h3><hr>" + todos)
+        with open("u_auth","w") as f:
+            f.write(un)
+        return render_template("redirect.html",destination="/myadvancement")
     else:
         # If wrong password, tell user they dumb
         return render_template("template.html",header="Password oopsie",
         body="<p>Wrong password for " + un + "</p>")
 
-
+# Return todo pg:
+@app.route("/myadvancement")
+def myad():
+    if check("u_auth"):
+        with open("u_auth") as f:
+            un = f.read()
+        os.remove("u_auth")
+        done, todos = todo.do(un)
+        # Return finished page to user
+        return render_template("template.html",header="Stats for " + un,
+        body = "<h3>Complete: </h3><hr>" + done + "<br><h3>Incomplete:</h3><hr>" + todos)
+    else:
+        return render_template("template.html",header="Password oopsie",
+        body="<p>Either you've refreshed page, or wrong password for scout account</p>")
 
 # Return a page generated from all the available ranks
 @app.route('/ranks')
