@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Venture Advancement - Management Portal</title>
+  </head>
+  <body>
+    <h1>Venture Advancement</h1>
+    <h2>Management Portal</h2>
+    <hr>
+    <button class="btn btn-danger" type="button" onclick="clearout();">Clear output</button>
+    <br><br>
+    <input id="scout" type="text" placeholder="Scout Name"></input>
+    <button class="btn btn-primary" type="button" onclick="history();">View Advancement</button>
+    <br>
+    <span id="newscoutinfo" style="display:none;">
+      <br><br>
+      <input id="scoutname" type="text" placeholder="Scout's Real Name"></input>
+      <input id="scoutpassword" type="password" placeholder="*****"></input>
+      <button class="btn btn-info" type="button" onclick="addscout();">Add new scout</button>
+    </span>
+    <br><br>
+    <h3>Mark requirement as done</h3>
+    <input id="rank" type="text" placeholder="Rank">
+    <input id="reqnumber" type="text" placeholder="Requirement Number">
+    <br><br>
+    <button class="btn btn-success" type="button" onclick="markdone();">Mark Complete</button>
+    <hr>
+    <p id='output'></p>
+    <script>
+    function toggle(id) {
+      var x = document.getElementById(id);
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    function httpGet(theUrl)
+      {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+      }
+      function clearout() {
+        document.getElementById('output').innerHTML = "";
+      }
+      function append(text) {
+        var boi = document.getElementById('output');
+        var old = boi.innerHTML;
+        old += "<br>" + text;
+        boi.innerHTML = old;
+      }
+      function act(url) {
+        append(httpGet(url));
+      }
+      function markdone() {
+        var rank = document.getElementById("rank").value;
+        var req = document.getElementById("reqnumber").value;
+        var scout = document.getElementById("scout").value;
+        var requestURL = "/md/" + scout + "/" + rank + "/" + req + "/";
+        act(url);
+      }
+      function history() {
+        var scout = document.getElementById("scout").value;
+        var url = "/scout/" + scout + "/";
+        append("<h3>History of " + scout + "</h3>");
+        act(url);
+      }
+      function addscout() {
+        var scout = document.getElementById("scout").value;
+        var name = document.getElementById('scoutname').value;
+        var password = document.getElementById('scoutpassword').value;
+        act("/ns/"+scout+"/"+name+"/"+password)
+      }
+
+
+    </script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

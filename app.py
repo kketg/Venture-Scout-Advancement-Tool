@@ -51,40 +51,10 @@ def err(e):
     chances are, you did nothing wrong. Please try again, but
     if you keep getting this message, please email:""" + error_contact + "</p>")
 
-# Method to mark requirement of rank done for user
-@app.route("/md/<un>/<rank>/<req>/")
-def md(un,rank,req):
-    status = db.markcomplete(un,rank,req)
-    return render_template("template.html",header="Output of DB Command",body="<p>" + status + "</p>")
-
 # User auth form
 @app.route("/signin/user/")
 def usr_sign():
     return render_template("signin.html",type="user")
-
-# Admin login form
-@app.route("/signin/admin/")
-def ad_sign():
-    return render_template("signin.html",type="admin")
-
-# Admin page auth (to hide admin login from URL bar)
-@app.route("/auth/admin/<username>/<password>/")
-def ad_redirect(username,password):
-    if db.authadmin(username,password):
-        with open("a_auth","w") as f:
-            f.write("ok")
-        return render_template("redirect.html",label="Admin Portal",destination="/management")
-    else:
-        return render_template("template.html",header="Error: Wrong login",body="<p>Seems you've typed the admin login incorrectly.</p>")
-
-# Actual admin page here (eventually)
-@app.route("/management")
-def m_portal():
-    if check("a_auth"):
-        os.remove("a_auth")
-        return "Getting there"
-    else:
-        return render_template("template.html",header="Error: Login",body="<p>Either you've refreshed the page<br>Or you've typed the admin login incorrectly.</p>")
 
 # Method to display a page of all requirements for user
 @app.route("/adv/<un>/<passw>/")
@@ -128,6 +98,60 @@ def allranks():
     return render_template("template.html",
     header="All venture ranks",
     body=bodi,footer="<p>Data - 2019</p>")
+
+
+
+
+
+## END NON-ADMIN FUNCTIONS ##
+
+
+
+
+
+
+
+# Admin login form
+@app.route("/signin/admin/")
+def ad_sign():
+    return render_template("signin.html",type="admin")
+
+# Admin page auth (to hide admin login from URL bar)
+@app.route("/auth/admin/<username>/<password>/")
+def ad_redirect(username,password):
+    if db.authadmin(username,password):
+        with open("a_auth","w") as f:
+            f.write("ok")
+        return render_template("redirect.html",label="Admin Portal",destination="/management")
+    else:
+        return render_template("template.html",header="Error: Wrong login",body="<p>Seems you've typed the admin login incorrectly.</p>")
+
+# Actual admin page here (eventually)
+@app.route("/management")
+def m_portal():
+    if check("a_auth"):
+        os.remove("a_auth")
+        return render_template("manage.html")
+    else:
+        return render_template("template.html",header="Error: Login",body="<p>Either you've refreshed the page<br>Or you've typed the admin login incorrectly.</p>")
+
+# Method to mark requirement of rank done for user
+@app.route("/md/<un>/<rank>/<req>/")
+def md(un,rank,req):
+    status = db.markcomplete(un,rank,req)
+    return render_template("simple.html",body="<p>" + status + "</p>")
+
+@app.route("/scout/<un>/")
+def sm_scout_display(un):
+    done, todos = todo.do(un)
+    # Return data to be embedded
+    return render_template("simple.html",body=done+"<hr>"+todos)
+
+@app.route("/ns/<un>/<sn>/<sp>")
+def addscout(un,sn,sp):
+    stat = db.addscout(un,sp,sn)
+    return render_template("simple.html",body="<p>"+stat+"</p>")
+
 
 
 if __name__ == '__main__':

@@ -108,7 +108,7 @@ class database:
                     backtostr += "\n" + line
             with open(rankfile,"w") as f:
                 f.write(backtostr)
-            return "Marked " + requirement + " done for " + username
+            return "Marked " + rank + " requirement " + requirement + " done for " + username
         else:
             return "Couldn't find the requested file for " + username
     def checkrankcomplete(self,username,rank):
@@ -156,8 +156,8 @@ if __name__ == "__main__":
     # Requirements are remove-once-done (e.g. todo file should be empty if a scout has achieved summit)
     print(d.addscout("dummyscout","samplepassword","John Doe"))
     # Change password type of password reset (requires correct old password)
-    print(d.changepassword("dummyscout","samplepassword","newsamplepassword"))
+    #print(d.changepassword("dummyscout","samplepassword","newsamplepassword"))
     # Admin type of password reset (b/c doesn't require old password {would want to include email if we wanted self-reset but im lazy xd})
-    d.setpassword("dummyscout","dummythicc")
+    #d.setpassword("dummyscout","dummythicc")
     # Mark requirement 10 of discovery complete for scout (acc. means delete from relevant file {but whatever})
-    d.markcomplete("dummyscout","discovery","10")
+    #d.markcomplete("dummyscout","discovery","10")
