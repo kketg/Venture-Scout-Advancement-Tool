@@ -1,12 +1,14 @@
 from ranks import rankload
 from db import database
 
+
 class td:
     def __init__(self):
-        self.dbm = database("root","toor")
+        self.dbm = database("root", "toor")
         self.rmm = rankload()
         return
-    def do(self,un):
+
+    def do(self, un):
         # This mess creates two HTML lists of: what the account has incomplete, and what they've finished
 
         complete = []
@@ -15,7 +17,7 @@ class td:
         notc = []
         for rank in all:
             # Check if user has rank complete
-            if self.dbm.checkrankcomplete(un,rank):
+            if self.dbm.checkrankcomplete(un, rank):
                 complete.append(rank)
             else:
                 notc.append(rank)
@@ -27,7 +29,7 @@ class td:
         for rank in notc:
             this = "<h4>" + rank + " todo:</h4><br><ul>"
             # Display all incomplete reqs for rank
-            this_td = self.dbm.getincomplete(un,rank)
+            this_td = self.dbm.getincomplete(un, rank)
             for td in this_td:
                 if td != " " and td != "" and td != "\n":
                     this += "<li><p>" + td + "</p></li>"
@@ -44,4 +46,4 @@ class td:
         else:
             done += "<p>Sorry, no ranks complete. :(</p>"
 
-        return (done,todos)
+        return (done, todos)
