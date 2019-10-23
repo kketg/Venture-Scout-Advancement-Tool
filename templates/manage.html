@@ -76,6 +76,7 @@
       function history() {
         var scout = document.getElementById("scout").value;
         var url = "/scout/" + scout + "/";
+        clearout();
         append("<h3>History of " + scout + "</h3>");
         act(url);
         toggle("md");
