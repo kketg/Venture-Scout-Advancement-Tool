@@ -37,14 +37,11 @@
     <p id='output'></p>
     <script>
     function toggle(id) {
-      alert("e");
       var x = document.getElementById(id);
       if (x.style.display === "none") {
         x.style.display = "block";
-        alert("in");
       } else {
         x.style.display = "none";
-        alert("out");
       }
     }
     function httpGet(theUrl)
@@ -71,7 +68,6 @@
         var req = document.getElementById("reqnumber").value;
         var scout = document.getElementById("scout").value;
         var requestURL = "/md/" + scout + "/" + rank + "/" + req + "/";
-        toggle("md");
         act(url);
       }
       function history() {
@@ -79,6 +75,7 @@
         var url = "/scout/" + scout + "/";
         append("<h3>History of " + scout + "</h3>");
         act(url);
+        toggle("md");
       }
       function addscout() {
         var scout = document.getElementById("scout").value;
