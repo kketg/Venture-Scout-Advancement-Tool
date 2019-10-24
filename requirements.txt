@@ -1,3 +1,4 @@
 flask
 pylint
 black
+Flask-Scss
