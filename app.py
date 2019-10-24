@@ -77,7 +77,7 @@ def err(e):
 # User auth form
 @app.route("/signin/user/")
 def usr_sign():
-    return render_template("signin.html", type="user")
+    return render_template("signin.html", type="user", style=style())
 
 
 # Method to display a page of all requirements for user
@@ -151,7 +151,7 @@ def allranks():
 # Admin login form
 @app.route("/signin/admin/")
 def ad_sign():
-    return render_template("signin.html", type="admin")
+    return render_template("signin.html", type="admin", style=style())
 
 
 # Admin page auth (to hide admin login from URL bar)
