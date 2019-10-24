@@ -4,17 +4,25 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <style>
+        #header{
+            background-color: green;
+            color: white;
+        }
+    </style>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <title>Venture Advancement - {{type}} Sign-in</title>
   </head>
   <body>
-    <h1>Venture Advancement</h1>
-    <h2>{{type}} Sign-in</h2>
+    <div id="header">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Venturing.svg/1200px-Venturing.svg.png" style="width:128px;height:128px;">
+        <h1>Venture Advancement</h1>
+        <h2>{{type}} Sign-in</h2>
+        <p>Sign in to your {{type}} account:</p>
+    </div>
     <hr>
-    <p>Sign in to your {{type}} account:</p>
 
     <script>
       function doauth() {
@@ -27,12 +35,14 @@
         window.location.replace(url);
       }
     </script>
-
-    <input type="text" id="user"></input>
-    <input type="password" id="password"></input>
-    <button class="btn btn-primary" type="button" onclick="doauth();">Go</button>
-
-    {{footer|safe}}
+    <div id="fun">
+        <input type="text" id="user"></input>
+        <input type="password" id="password"></input>
+        <button class="btn btn-primary" type="button" onclick="doauth();">Go</button>
+    </div>
+    <div id="nothing">
+        {{footer|safe}}
+    </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
