@@ -6,7 +6,7 @@ clear
 
 ssh matt@mattcompton.me "rm -rfv VenturyBoi"
 ssh matt@mattcompton.me "git clone https://github.com/kketg/VenturyBoi"
-ssh matt@mattcompton.me "kill $( lsof -i:9090 -t )"
+ssh matt@mattcompton.me "kill \$( lsof -i:9090 -t )"
 
 clear
 
