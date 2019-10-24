@@ -1,8 +1,5 @@
-# Comment to test another thing i'm working on
-
 from flask import *
 
-# from Flask-Scss import Scss
 from ranks import rankload
 from db import database
 from todo import td
@@ -19,7 +16,7 @@ def check(p):
 
 
 app = Flask(__name__)
-# Scss(app)
+
 
 # Create instance of boi that knows rank requirements
 rm = rankload()
