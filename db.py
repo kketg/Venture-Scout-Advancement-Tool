@@ -67,7 +67,7 @@ class database:
                 str = ""
                 for requirement in self.rm.getnums(rank):
                     str += "\n" + requirement
-                with open(scoutpath + self.s + rank + ".txt", "w") as f:
+                with open(scoutpath + self.s + rank.lower() + ".txt", "w") as f:
                     f.write(str)
             return "Created " + disp_name
         # If user already exii, commit don't
