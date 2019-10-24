@@ -1,4 +1,5 @@
-from flask import *
+from flask import Flask
+from flask import render_template
 
 from ranks import rankload
 from db import database
