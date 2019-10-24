@@ -31,11 +31,16 @@ pl = pageloader()
 # Add this email to error pages
 error_contact = "matt@mattcompton.me"
 
+# Get style
+def style():
+    return pl.gethtml("kris_style")
+
+
 # Render homepage w/ default template
 @app.route("/")
 def yeetiguess():
     ac = pl.gethtml("main")
-    return render_template("template.html", header="Home", body=ac)
+    return render_template("template.html", header="Home", body=ac, style=style())
 
 
 # Return a 404 page if user does an oopsie
@@ -49,6 +54,7 @@ def fof(e):
     please get in touch with the developer at """
         + error_contact
         + "</p>",
+        style=style(),
     )
 
 
@@ -64,6 +70,7 @@ def err(e):
     if you keep getting this message, please email:"""
         + error_contact
         + "</p>",
+        style=style(),
     )
 
 
@@ -86,6 +93,7 @@ def adv(un, passw):
             "template.html",
             header="Password oopsie",
             body="<p>Wrong password for " + un + "</p>",
+            style=style(),
         )
 
 
@@ -105,12 +113,14 @@ def myad():
             + done
             + "<br><h3>Incomplete:</h3><hr>"
             + todos,
+            style=style(),
         )
     else:
         return render_template(
             "template.html",
             header="Password oopsie",
             body="<p>Either you've refreshed page, or wrong password for scout account</p>",
+            style=style(),
         )
 
 
@@ -131,6 +141,7 @@ def allranks():
         header="All venture ranks",
         body=bodi,
         footer="<p>Data - 2019</p>",
+        style=style(),
     )
 
 
@@ -157,6 +168,7 @@ def ad_redirect(username, password):
             "template.html",
             header="Error: Wrong login",
             body="<p>Seems you've typed the admin login incorrectly.</p>",
+            style=style(),
         )
 
 
@@ -171,6 +183,7 @@ def m_portal():
             "template.html",
             header="Error: Login",
             body="<p>Either you've refreshed the page<br>Or you've typed the admin login incorrectly.</p>",
+            style=style(),
         )
 
 
