@@ -177,7 +177,9 @@ def ad_redirect(username, password):
 def m_portal():
     if check("a_auth"):
         os.remove("a_auth")
-        return render_template("manage.html")
+        return render_template(
+            "template.html", body=pl.gethtml("manage"), style=style()
+        )
     else:
         return render_template(
             "template.html",
@@ -214,4 +216,4 @@ if __name__ == "__main__":
 
     db.addscout("dummyscout", "samplepassword", "John Doe")
 
-    app.run(host="0.0.0.0", port="9090")
+    app.run(host="0.0.0.0", port="9090", debug=True)
