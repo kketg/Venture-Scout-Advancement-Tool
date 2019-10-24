@@ -6,11 +6,11 @@ git push
 
 cls
 
-ssh matt@10.0.0.7 "rm -rfv VenturyBoi"
-ssh matt@10.0.0.7 "git clone https://github.com/kketg/VenturyBoi"
-ssh matt@10.0.0.7 "kill $( lsof -i:9090 -t )"
+ssh matt@mattcompton.me "rm -rfv VenturyBoi"
+ssh matt@mattcompton.me "git clone https://github.com/kketg/VenturyBoi"
+ssh matt@mattcompton.me "kill $( lsof -i:9090 -t )"
 
 cls
 
-ssh matt@10.0.0.7 "cd VenturyBoi && python3 app.py"
+ssh matt@mattcompton.me "cd VenturyBoi && python3 app.py"
 pause
