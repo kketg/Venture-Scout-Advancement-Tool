@@ -192,3 +192,4 @@ if __name__ == "__main__":
     # d.setpassword("dummyscout","dummythicc")
     # Mark requirement 10 of discovery complete for scout (acc. means delete from relevant file {but whatever})
     # d.markcomplete("dummyscout","discovery","10")
+    print(d.getRealName("dummyscout"))
