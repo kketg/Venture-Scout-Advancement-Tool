@@ -165,6 +165,20 @@ class database:
         else:
             return "Couldn't get rank file " + rank + " for " + user
 
+    def getRealName(self, user):
+        scoutPath = self.dbp + user
+        nameFile = scoutPath + self.s + "dname"
+        #opens dname file
+        if check(nameFile):
+            name = ""
+            with open(nameFile) as f:
+                name = f.readline()
+            name = name.split("\n")[0]
+            return name
+        else:
+            return "Something went wrong with your account making dumbdumb"
+
+
 
 if __name__ == "__main__":
     # Args only matter if creating DB for first time. Otherwise, these must match the ones that already are saved

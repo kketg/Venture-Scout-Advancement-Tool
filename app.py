@@ -108,7 +108,7 @@ def myad():
         # Return finished page to user
         return render_template(
             "template.html",
-            header="Stats for " + un,
+            header="Stats for " + db.getRealName(un),
             body="<h3>Complete: </h3><hr>"
             + done
             + "<br><h3>Incomplete:</h3><hr>"
@@ -161,7 +161,7 @@ def ad_redirect(username, password):
         with open("a_auth", "w") as f:
             f.write("ok")
         return render_template(
-            "redirect.html", label="Admin Portal", destination="/management"
+            "redirect.html", label="Admin Portal", destination="/management", style=style()
         )
     else:
         return render_template(
