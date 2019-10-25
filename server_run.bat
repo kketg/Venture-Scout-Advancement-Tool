@@ -6,8 +6,7 @@ git push
 
 cls
 
-ssh matt@mattcompton.me "rm -rfv VenturyBoi"
-ssh matt@mattcompton.me "git clone https://github.com/kketg/VenturyBoi"
+ssh matt@mattcompton.me "cd VenturyBoi && git pull"
 ssh matt@mattcompton.me "kill $( lsof -i:9090 -t )"
 
 cls
