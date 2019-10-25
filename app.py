@@ -16,7 +16,7 @@ def check(p):
         return False
 
 
-app = Flask(__name__)
+app = Flask(__name__,static_folder='static/')
 
 
 # Create instance of boi that knows rank requirements
