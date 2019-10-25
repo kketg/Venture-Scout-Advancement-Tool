@@ -94,9 +94,13 @@ class database:
         # All this does is delete user's old password file, and put a new one with the new password
         scoutpath = self.dbp + username
         pwf = scoutpath + self.s + "passw"
-        os.remove(pwf)
-        with open(pwf, "w") as f:
-            f.write(newpassword)
+        if check(pwf):
+            os.remove(pwf)
+            with open(pwf, "w") as f:
+                f.write(newpassword)
+            return "Changed password"
+        else:
+            return "Couldn't find password file"
 
     def markcomplete(self, username, rank, requirement):
         # Save the file for requested rank as rankfile
