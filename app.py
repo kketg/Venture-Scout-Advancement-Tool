@@ -16,7 +16,7 @@ def check(p):
         return False
 
 
-app = Flask(__name__,static_folder='static/')
+app = Flask(__name__, static_folder="static/")
 
 
 # Create instance of boi that knows rank requirements
@@ -161,7 +161,10 @@ def ad_redirect(username, password):
         with open("a_auth", "w") as f:
             f.write("ok")
         return render_template(
-            "redirect.html", label="Admin Portal", destination="/management", style=style()
+            "redirect.html",
+            label="Admin Portal",
+            destination="/management",
+            style=style(),
         )
     else:
         return render_template(

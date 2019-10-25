@@ -168,16 +168,19 @@ class database:
     def getRealName(self, user):
         scoutPath = self.dbp + user
         nameFile = scoutPath + self.s + "dname"
-        #opens dname file
+        # opens dname file
         if check(nameFile):
             name = ""
             with open(nameFile) as f:
                 name = f.readline()
+            # Kris this makes me sad a lil
+            # but also kinda impressed.
+            # can you refactor the rest of
+            # this file in this way?
             name = name.split("\n")[0]
             return name
         else:
             return "Something went wrong with your account making dumbdumb"
-
 
 
 if __name__ == "__main__":
