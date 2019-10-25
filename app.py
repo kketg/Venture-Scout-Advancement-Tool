@@ -31,6 +31,13 @@ pl = pageloader()
 # Add this email to error pages
 error_contact = "matt@mattcompton.me"
 
+###########################Fix this system so that it's more uniform among the admins and regular users
+def signInAlert(type):
+    if type == "password":
+        return "Error: You entered the wrong password"
+    elif type == "admin":
+        return "Error: You entered your admin login wrong"
+
 # Get style
 def style():
     return pl.gethtml("kris_style")
@@ -89,12 +96,13 @@ def adv(un, passw):
         return render_template("redirect.html", destination="/myadvancement")
     else:
         # If wrong password, tell user they dumb
-        return render_template(
-            "template.html",
-            header="Password oopsie",
-            body="<p>Wrong password for " + un + "</p>",
-            style=style(),
-        )
+        return render_template("signin.html", type="user", alert=signInAlert("password"), style=style())
+        #return render_template(
+        #    "template.html",
+        #    header="Password oopsie",
+        #    body="<p>Wrong password for " + un + "</p>",
+        #    style=style(),
+        #)
 
 
 # Return todo pg:
@@ -168,9 +176,9 @@ def ad_redirect(username, password):
         )
     else:
         return render_template(
-            "template.html",
-            header="Error: Wrong login",
-            body="<p>Seems you've typed the admin login incorrectly.</p>",
+            "signin.html",
+            type="admin",
+            alert=signInAlert("admin"),
             style=style(),
         )
 
