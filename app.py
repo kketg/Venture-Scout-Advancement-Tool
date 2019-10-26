@@ -38,6 +38,7 @@ def signInAlert(type):
     elif type == "admin":
         return "Error: You entered your admin login wrong"
 
+
 # Get style
 def style():
     return pl.gethtml("kris_style")
@@ -96,13 +97,15 @@ def adv(un, passw):
         return render_template("redirect.html", destination="/myadvancement")
     else:
         # If wrong password, tell user they dumb
-        return render_template("signin.html", type="user", alert=signInAlert("password"), style=style())
-        #return render_template(
+        return render_template(
+            "signin.html", type="user", alert=signInAlert("password"), style=style()
+        )
+        # return render_template(
         #    "template.html",
         #    header="Password oopsie",
         #    body="<p>Wrong password for " + un + "</p>",
         #    style=style(),
-        #)
+        # )
 
 
 # Return todo pg:
@@ -176,10 +179,7 @@ def ad_redirect(username, password):
         )
     else:
         return render_template(
-            "signin.html",
-            type="admin",
-            alert=signInAlert("admin"),
-            style=style(),
+            "signin.html", type="admin", alert=signInAlert("admin"), style=style()
         )
 
 
