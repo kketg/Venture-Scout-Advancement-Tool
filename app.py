@@ -31,12 +31,9 @@ pl = pageloader()
 # Add this email to error pages
 error_contact = "matt@mattcompton.me"
 
-###########################Fix this system so that it's more uniform among the admins and regular users
+
 def signInAlert(type):
-    if type == "password":
-        return "Error: You entered the wrong password "
-    elif type == "admin":
-        return "Error: You entered your admin login wrong "
+    return "Error: Incorrect Login"
 
 
 # Get style
