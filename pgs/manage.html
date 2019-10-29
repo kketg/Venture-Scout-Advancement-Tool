@@ -24,6 +24,7 @@
     <hr>
     <p id='output'></p>
     <script>
+    block(md)
     function toggle(id) {
       var x = document.getElementById(id);
       if (x.style.display === "none") {
@@ -31,6 +32,14 @@
       } else {
         x.style.display = "none";
       }
+    }
+    function block(id){
+        var x = document.getElementById(id);
+        x.style.display = "block";
+    }
+    function unBlock(id){
+        var x = document.getElementById(id);
+        x.style.display = "none";
     }
     function httpGet(theUrl)
       {
@@ -41,6 +50,9 @@
       }
       function clearout() {
         document.getElementById('output').innerHTML = "";
+      }
+      function clearInputField(id){
+          document.getElementById(id).value = "";
       }
       function append(text) {
         var boi = document.getElementById('output');
@@ -57,6 +69,8 @@
         var scout = document.getElementById("scout").value;
         var requestURL = "/md/" + scout + "/" + rank + "/" + req + "/";
         act(url);
+        clearInputField("rank")
+        clearInputField("reqnumber")
       }
       function history() {
         var scout = document.getElementById("scout").value;
@@ -64,12 +78,15 @@
         clearout();
         append("<h3>History of " + scout + "</h3>");
         act(url);
-        toggle("md");
+        unBlock("md");
       }
       function addscout() {
         var scout = document.getElementById("scoutusername").value;
         var name = document.getElementById('scoutname').value;
         var password = document.getElementById('scoutpassword').value;
         act("/ns/"+scout+"/"+name+"/"+password)
+        clearInputField("scoutname");
+        clearInputField("scoutusername")
+        clearInputField("scoutpassword")
       }
     </script>

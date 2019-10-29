@@ -33,7 +33,12 @@ error_contact = "matt@mattcompton.me"
 
 
 def signInAlert(type):
-    return "Error: Incorrect Login"
+    if(type == "password"):
+        return "Error: Incorrect Login"
+    if(type == "refresh"):
+        return "Error: You refreshed the page"
+    else:
+        return "Unknown Error"
 
 
 # Get style
@@ -125,10 +130,7 @@ def myad():
         )
     else:
         return render_template(
-            "template.html",
-            header="Password oopsie",
-            body="<p>Either you've refreshed page, or wrong password for scout account</p>",
-            style=style(),
+            "signin.html", type="user", alert=signInAlert("refresh"), style=style()
         )
 
 
@@ -190,10 +192,7 @@ def m_portal():
         )
     else:
         return render_template(
-            "template.html",
-            header="Error: Login",
-            body="<p>Either you've refreshed the page<br>Or you've typed the admin login incorrectly.</p>",
-            style=style(),
+            "signin.html", type="admin", alert=signInAlert("refresh"), style=style()
         )
 
 
