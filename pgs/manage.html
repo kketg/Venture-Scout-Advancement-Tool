@@ -1,30 +1,30 @@
 
 <button class="btn btn-danger" type="button" onclick="clearout();">Clear output</button>
+<br><br>
+<button class="btn btn-primary" type="button" onclick="toggle('newscoutinfo')">New Scout</button>
+<br><br>
+<input id="scout" type="text" placeholder="Scout Name"></input>
+<button class="btn btn-primary" type="button" onclick="history();">View Advancement</button>
+<br>
+<span id="newscoutinfo" style="display:none;">
     <br><br>
-    <button class="btn btn-primary" type="button" onclick="toggle('newscoutinfo')">New Scout</button>
+    <input id="scoutname" type="text" placeholder="Scout's Real Name"></input>
+    <input id="scoutusername" type="text" placeholder="Scout's User ID"></input>
+    <input id="scoutpassword" type="password" placeholder="*****"></input>
+    <button class="btn btn-info" type="button" onclick="addscout();">Add new scout</button>
+</span>
+<br><br>
+<span id="md" style="display:none;">
+    <h3>Mark requirement as done</h3>
+    <input id="rank" type="text" placeholder="Rank">
+    <input id="reqnumber" type="text" placeholder="Requirement Number">
     <br><br>
-    <input id="scout" type="text" placeholder="Scout Name"></input>
-    <button class="btn btn-primary" type="button" onclick="history();">View Advancement</button>
-    <br>
-    <span id="newscoutinfo" style="display:none;">
-      <br><br>
-      <input id="scoutname" type="text" placeholder="Scout's Real Name"></input>
-      <input id="scoutusername" type="text" placeholder="Scout's User ID"></input>
-      <input id="scoutpassword" type="password" placeholder="*****"></input>
-      <button class="btn btn-info" type="button" onclick="addscout();">Add new scout</button>
-    </span>
-    <br><br>
-    <span id="md" style="display:none;">
-      <h3>Mark requirement as done</h3>
-      <input id="rank" type="text" placeholder="Rank">
-      <input id="reqnumber" type="text" placeholder="Requirement Number">
-      <br><br>
-      <button class="btn btn-success" type="button" onclick="markdone();">Mark Complete</button>
-    </span>
-    <hr>
-    <p id='output'></p>
-    <script>
-    block(md)
+    <button class="btn btn-success" type="button" onclick="markdone();">Mark Complete</button>
+</span>
+<hr>
+<p id='output'></p>
+<script>
+    block(md);
     function toggle(id) {
       var x = document.getElementById(id);
       if (x.style.display === "none") {
