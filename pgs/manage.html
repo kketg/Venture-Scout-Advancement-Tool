@@ -35,11 +35,11 @@
     }
     function block(id){
         var x = document.getElementById(id);
-        x.style.display = "block";
+        x.style.display = "none";
     }
     function unBlock(id){
         var x = document.getElementById(id);
-        x.style.display = "none";
+        x.style.display = "block";
     }
     function httpGet(theUrl)
       {
@@ -68,9 +68,11 @@
         var req = document.getElementById("reqnumber").value;
         var scout = document.getElementById("scout").value;
         var requestURL = "/md/" + scout + "/" + rank + "/" + req + "/";
-        act(url);
-        clearInputField("rank")
-        clearInputField("reqnumber")
+        act(requestURL);
+        clearInputField("rank");
+        clearInputField("reqnumber");
+        clearout();
+        history();
       }
       function history() {
         var scout = document.getElementById("scout").value;
