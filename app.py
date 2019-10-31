@@ -32,7 +32,7 @@ pl = pageloader()
 error_contact = "matt@mattcompton.me"
 
 
-def signInAlert(type):
+def Alert(type):
     if type == "password":
         return "Error: Incorrect Login"
     elif type == "refresh":
@@ -41,6 +41,8 @@ def signInAlert(type):
         return "Error: Couldn't find requirement"
     elif type == "reqcompleted":
         return "Error: Requirement already completed"
+    elif type == "usernotreal":
+        return "Error: That username doesn't exist"
     else:
         return "Unknown Error"
 
@@ -110,7 +112,7 @@ def adv(un, passw):
     else:
         # If wrong password, tell user they dumb
         return render_template(
-            "signin.html", type="user", alert=signInAlert("password"), style=style()
+            "signin.html", type="user", alert=Alert("password"), style=style()
         )
         # return render_template(
         #    "template.html",
@@ -140,7 +142,7 @@ def myad():
         )
     else:
         return render_template(
-            "signin.html", type="user", alert=signInAlert("refresh"), style=style()
+            "signin.html", type="user", alert=Alert("refresh"), style=style()
         )
 
 
@@ -188,7 +190,7 @@ def ad_redirect(username, password):
         )
     else:
         return render_template(
-            "signin.html", type="admin", alert=signInAlert("admin"), style=style()
+            "signin.html", type="admin", alert=Alert("admin"), style=style()
         )
 
 
@@ -202,7 +204,7 @@ def m_portal():
         )
     else:
         return render_template(
-            "signin.html", type="admin", alert=signInAlert("refresh"), style=style()
+            "signin.html", type="admin", alert=Alert("refresh"), style=style()
         )
 
 
