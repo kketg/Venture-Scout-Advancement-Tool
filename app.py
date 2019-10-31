@@ -180,7 +180,7 @@ def ad_sign():
 # Admin page auth (to hide admin login from URL bar)
 @app.route("/auth/admin/<username>/<password>/")
 def ad_redirect(username, password):
-    if db.authadmin(username, password):
+    if db.checkAdvisor(username, password):
         with open("a_auth", "w") as f:
             f.write("ok")
         return render_template(
