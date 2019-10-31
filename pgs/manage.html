@@ -49,57 +49,57 @@
         xmlHttp.send( null );
         return xmlHttp.responseText;
       }
-      function clearout() {
-        document.getElementById('output').innerHTML = "";
-      }
-      function clearInputField(id){
-          document.getElementById(id).value = "";
-      }
-      function append(text) {
-        var boi = document.getElementById('output');
-        var old = boi.innerHTML;
-        old += "<br>" + text;
-        boi.innerHTML = old;
-      }
-      function act(url) {
-        append(httpGet(url));
-      }
-      function markdone() {
-        var rank = document.getElementById("rank").value;
-        var req = document.getElementById("reqnumber").value;
-        var scout = document.getElementById("scout").value;
-        var requestURL = "/md/" + scout + "/" + rank + "/" + req + "/";
-        act(requestURL);
-        clearInputField("rank");
-        clearInputField("reqnumber");
+    function clearout() {
+    document.getElementById('output').innerHTML = "";
+    }
+    function clearInputField(id){
+        document.getElementById(id).value = "";
+    }
+    function append(text) {
+    var boi = document.getElementById('output');
+    var old = boi.innerHTML;
+    old += "<br>" + text;
+    boi.innerHTML = old;
+    }
+    function act(url) {
+    append(httpGet(url));
+    }
+    function markdone() {
+    var rank = document.getElementById("rank").value;
+    var req = document.getElementById("reqnumber").value;
+    var scout = document.getElementById("scout").value;
+    var requestURL = "/md/" + scout + "/" + rank + "/" + req + "/";
+    act(requestURL);
+    clearInputField("rank");
+    clearInputField("reqnumber");
+    clearout();
+    history();
+    }
+    function history() {
+    var scout = document.getElementById("scout").value;
+    var url = "/scout/" + scout + "/";
+    clearout();
+    append("<h3>History of " + scout + "</h3>");
+    act(url);
+    unBlock("md");
+    }
+    function addscout() {
+    var scout = document.getElementById("scoutusername").value;
+    var name = document.getElementById('scoutname').value;
+    var password = document.getElementById('scoutpassword').value;
+    act("/ns/"+scout+"/"+name+"/"+password)
+    clearInputField("scoutname");
+    clearInputField("scoutusername")
+    clearInputField("scoutpassword")
+    unBlock("historybox");
+    //clearout();
+    unBlock("md");
+    block("newscoutinfo");
+    }
+    function nsshow() {
+        unBlock("newscoutinfo");
+        block("historybox");
+        block("md");
         clearout();
-        history();
-      }
-      function history() {
-        var scout = document.getElementById("scout").value;
-        var url = "/scout/" + scout + "/";
-        clearout();
-        append("<h3>History of " + scout + "</h3>");
-        act(url);
-        unBlock("md");
-      }
-      function addscout() {
-        var scout = document.getElementById("scoutusername").value;
-        var name = document.getElementById('scoutname').value;
-        var password = document.getElementById('scoutpassword').value;
-        act("/ns/"+scout+"/"+name+"/"+password)
-        clearInputField("scoutname");
-        clearInputField("scoutusername")
-        clearInputField("scoutpassword")
-        unBlock("historybox");
-        //clearout();
-        unBlock("md");
-        block("newscoutinfo");
-      }
-      function nsshow() {
-          unBlock("newscoutinfo");
-          block("historybox");
-          block("md");
-          clearout();
-      }
+    }
     </script>
