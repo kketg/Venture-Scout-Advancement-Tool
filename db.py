@@ -114,19 +114,22 @@ class database:
             # Look over every line in file for the requirement to mark as done, and remove from file
             lines = incomp.split("\n")
             backtostr = ""
-            for line in lines:
-                if line != requirement:
-                    backtostr += "\n" + line
-            with open(rankfile, "w") as f:
-                f.write(backtostr)
-            return (
-                "Marked "
-                + rank
-                + " requirement "
-                + requirement
-                + " done for "
-                + username
-            )
+            if requirement in lines:
+                for line in lines:
+                    if line != requirement:
+                        backtostr += "\n" + line
+                with open(rankfile, "w") as f:
+                    f.write(backtostr)
+                return (
+                    "Marked "
+                    + rank
+                    + " requirement "
+                    + requirement
+                    + " done for "
+                    + username
+                )
+            else:
+                return "Couldn't find requirement " + requirement + " for " + rank
         else:
             return "Couldn't find the requested file for " + username
 
