@@ -173,8 +173,7 @@ def ad_redirect(username, password):
         return render_template(
             "redirect.html",
             label="Admin Portal",
-            destination="/management",
-            style=style(),
+            destination="/management"
         )
     else:
         return render_template(
