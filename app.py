@@ -182,6 +182,12 @@ def ad_sign():
     return render_template("signin.html", type="admin", style=style())
 
 
+# New advisor
+@app.route("/add/adv/<un>/<password>/")
+def newadv(un, password):
+    return db.addAdvisor(un, password)
+
+
 # Admin page auth (to hide admin login from URL bar)
 @app.route("/auth/admin/<username>/<password>/")
 def ad_redirect(username, password):
@@ -200,7 +206,7 @@ def ad_redirect(username, password):
         )
 
 
-# Actual admin page here (eventually)
+# Actual admin page here
 @app.route("/management")
 def m_portal():
     if check("a_auth"):
