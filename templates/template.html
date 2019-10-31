@@ -14,6 +14,9 @@
         <h1>Venture Advancement</h1>
         <h2>{{header|safe}}</h2>
     </div>
+    <div id="alert" {% if alert is defined %} style="display:block;" {% endif %}>
+        {{alert}}
+    </div>
     <div id="bodi">
         {{body|safe}}
         {{footer|safe}}
