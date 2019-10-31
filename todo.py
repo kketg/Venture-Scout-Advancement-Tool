@@ -26,15 +26,17 @@ class td:
         # want to replace with tables at some point
         # see: https://www.w3schools.com/html/html_tables.asp
         todos = """"""
+
         for rank in notc:
-            this = "<h4>" + rank + " todo:</h4><br><ul>"
-            # Display all incomplete reqs for rank
-            this_td = self.dbm.getincomplete(un, rank)
-            for td in this_td:
-                if td != " " and td != "" and td != "\n":
-                    this += "<li><p>" + td + "</p></li>"
-            this += "</ul>"
-            todos += this + "<hr>"
+            if not self.dbm.checkrankcomplete(un,rank):
+                this = "<h4>" + rank + " todo:</h4><br><ul>"
+                # Display all incomplete reqs for rank
+                this_td = self.dbm.getincomplete(un, rank)
+                for td in this_td:
+                    if td != " " and td != "" and td != "\n":
+                        this += "<li><p>" + td + "</p></li>"
+                this += "</ul>"
+                todos += this + "<hr>"
 
         # for each complete rank, add to list
         done = """"""

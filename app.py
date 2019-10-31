@@ -103,6 +103,7 @@ def usr_sign():
 # Method to display a page of all requirements for user
 @app.route("/adv/<un>/<passw>/")
 def adv(un, passw):
+    db.sanitize(un)
     if db.checkpassw(un, passw):
         with open("u_auth", "w") as f:
             f.write(un)

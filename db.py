@@ -102,15 +102,39 @@ class database:
         else:
             return "Couldn't find password file"
 
+    def sanitize(self, username):
+
+        scoutpath = self.dbp + username
+        ranks = self.rm.getallranks()
+        for rank in ranks:
+            path = scoutpath + self.s + rank + ".txt"
+            if check(path):
+                with open(path) as f:
+                    if f.read() == "":
+                        os.remove(path)
+                if check(path):
+                    with open(path) as f:
+                        raw = f.read()
+                    lines = raw.split("\n")
+                    for line in lines:
+                        if line == "" or line == " ":
+                            lines.remove(line)
+                    os.remove(path)
+                    if lines:
+                        with open(path, "w") as f:
+                            f.write("\n".join(lines))
+
+
+
     def markcomplete(self, username, rank, requirement):
         # Save the file for requested rank as rankfile
         scoutpath = self.dbp + username
         rankfile = scoutpath + self.s + rank + ".txt"
         # Make sure it exii
+
         if check(rankfile):
             with open(rankfile) as f:
                 incomp = f.read()
-            os.remove(rankfile)
             # Look over every line in file for the requirement to mark as done, and remove from file
             lines = incomp.split("\n")
             backtostr = ""
@@ -118,6 +142,7 @@ class database:
                 for line in lines:
                     if line != requirement:
                         backtostr += "\n" + line
+                os.remove(rankfile)
                 with open(rankfile, "w") as f:
                     f.write(backtostr)
                 return (
@@ -131,7 +156,7 @@ class database:
             else:
                 return "Couldn't find requirement " + requirement + " for " + rank
         else:
-            return "Couldn't find the requested file for " + username
+            return username + "already completed that rank"
 
     def checkrankcomplete(self, username, rank):
         # Since requirements are removed when they're done, if the file is empty, it means the scout did the thing.
@@ -145,6 +170,8 @@ class database:
                 return True
             else:
                 return False
+        else:
+            return True
 
     def checkpassw(self, user, passw):
         scoutpath = self.dbp + user
@@ -195,11 +222,12 @@ if __name__ == "__main__":
     d = database("root", "toor")
     # Add scout with params
     # Requirements are remove-once-done (e.g. todo file should be empty if a scout has achieved summit)
-    print(d.addscout("dummyscout", "samplepassword", "John Doe"))
+    #print(d.addscout("dummyscout", "samplepassword", "John Doe"))
     # Change password type of password reset (requires correct old password)
     # print(d.changepassword("dummyscout","samplepassword","newsamplepassword"))
     # Admin type of password reset (b/c doesn't require old password {would want to include email if we wanted self-reset but im lazy xd})
     # d.setpassword("dummyscout","dummythicc")
     # Mark requirement 10 of discovery complete for scout (acc. means delete from relevant file {but whatever})
     # d.markcomplete("dummyscout","discovery","10")
-    print(d.getRealName("dummyscout"))
+    #print(d.getRealName("dummyscout"))
+    #d.sanitize("dummyscout")
