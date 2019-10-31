@@ -35,8 +35,12 @@ error_contact = "matt@mattcompton.me"
 def signInAlert(type):
     if type == "password":
         return "Error: Incorrect Login"
-    if type == "refresh":
+    elif type == "refresh":
         return "Error: You refreshed the page"
+    elif type == "reqnotexist":
+        return "Error: Couldn't find requirement"
+    elif type == "reqcompleted":
+        return "Error: Requirement already completed"
     else:
         return "Unknown Error"
 
