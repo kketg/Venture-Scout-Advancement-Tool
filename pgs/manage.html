@@ -8,7 +8,9 @@
 </span>
 <br>
 <span id="newscoutinfo" style="display:none;">
-    <br><br>
+    <br>
+    <button class="btn btn-primary" type="button" onclick="nshide();">Back</button>
+    <br>
     <input id="scoutname" type="text" placeholder="Scout's Real Name"></input>
     <input id="scoutusername" type="text" placeholder="Scout's User ID"></input>
     <input id="scoutpassword" type="password" placeholder="*****"></input>
@@ -94,6 +96,11 @@
         unBlock("newscoutinfo");
         block("historybox");
         block("md");
+        clearout();
+    }
+    function nshide(){
+        block("newscoutinfo");
+        unBlock("historybox");
         clearout();
     }
     </script>

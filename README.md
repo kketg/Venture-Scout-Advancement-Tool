@@ -6,7 +6,9 @@
 * Error handling for admin thingies
 * Also need to make an admin sign-up page, with like a crew number function maybe?
 * Fix the css on some pages and make the actual text on a lot of the pages not succ
-* ?
+## Admin things that do a succ
+
+
 ## Done:
 * (pretty) Web UI
 * Web UI
