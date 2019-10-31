@@ -71,11 +71,18 @@
     }
     function history() {
         var scout = document.getElementById("scout").value;
-        var url = "/scout/" + scout + "/";
-        clearout();
-        append("<h3>History of " + scout + "</h3>");
-        act(url);
-        unBlock("md");
+        var isreal = httpGet("/isreal/" +scout);
+        if(isreal == "True"){
+            var url = "/scout/" + scout + "/";
+            clearout();
+            append("<h3>History of " + scout + "</h3>");
+            act(url);
+            unBlock("md");
+        }else{
+            append("<h3>" + scout + " doesn't exist</h3>");
+        }
+
+
     }
     function addscout() {
         var scout = document.getElementById("scoutusername").value;
