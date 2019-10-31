@@ -29,7 +29,41 @@ class database:
             # Commit root password into file
             with open(self.dbp + self.s + "apass", "w") as f:
                 f.write(apass)
+        self.ap = "data"+self.s+"advisors"
+        if not check(self.ap):
+            os.makedirs(self.ap)
 
+    def isReal(self,name):
+        if check(self.dbp+self.s+name):
+            return True
+        else:
+            return False
+
+    # This function is creating advisor logins
+    def addAdvisor(self,name,password):
+        thisadv = self.ap + self.s + name
+        if not check(thisadv):
+            with open(thisadv,"w") as f:
+                f.write(password)
+                return "Added new advisor login"
+        else:
+            return "Advisor exists"
+
+    # This function approves advisor logins
+    def checkAdvisor(self,name,testpassword):
+        thisadv = self.ap + self.s + name
+        if check(thisadv):
+            with open(thisadv) as f:
+                correct = f.read()
+            if correct == testpassword:
+                return True
+            else:
+                return False
+        else:
+            return False
+
+
+    # This function is the database root login, not advisor logins
     def authadmin(self, auser, apass):
         # Check if root user file exist, if so, commit read
         if check(self.dbp + self.s + "auser"):
