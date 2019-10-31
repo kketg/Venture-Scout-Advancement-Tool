@@ -45,6 +45,9 @@ def signInAlert(type):
 def style():
     return pl.gethtml("kris_style")
 
+def portalStyle():
+    return pl.gethtml("portal_style")
+
 
 # Render homepage w/ default template
 @app.route("/")
@@ -96,7 +99,7 @@ def adv(un, passw):
     if db.checkpassw(un, passw):
         with open("u_auth", "w") as f:
             f.write(un)
-        return render_template("redirect.html", destination="/myadvancement")
+        return render_template("redirect.html", destination="/myadvancement", style=portalStyle())
     else:
         # If wrong password, tell user they dumb
         return render_template(
@@ -173,7 +176,8 @@ def ad_redirect(username, password):
         return render_template(
             "redirect.html",
             label="Admin Portal",
-            destination="/management"
+            destination="/management",
+            style=portalStyle()
         )
     else:
         return render_template(
