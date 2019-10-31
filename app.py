@@ -33,9 +33,9 @@ error_contact = "matt@mattcompton.me"
 
 
 def signInAlert(type):
-    if(type == "password"):
+    if type == "password":
         return "Error: Incorrect Login"
-    if(type == "refresh"):
+    if type == "refresh":
         return "Error: You refreshed the page"
     else:
         return "Unknown Error"
@@ -44,6 +44,7 @@ def signInAlert(type):
 # Get style
 def style():
     return pl.gethtml("kris_style")
+
 
 def portalStyle():
     return pl.gethtml("portal_style")
@@ -99,7 +100,9 @@ def adv(un, passw):
     if db.checkpassw(un, passw):
         with open("u_auth", "w") as f:
             f.write(un)
-        return render_template("redirect.html", destination="/myadvancement", style=portalStyle())
+        return render_template(
+            "redirect.html", destination="/myadvancement", style=portalStyle()
+        )
     else:
         # If wrong password, tell user they dumb
         return render_template(
@@ -177,7 +180,7 @@ def ad_redirect(username, password):
             "redirect.html",
             label="Admin Portal",
             destination="/management",
-            style=portalStyle()
+            style=portalStyle(),
         )
     else:
         return render_template(

@@ -1,10 +1,12 @@
 
 <button class="btn btn-danger" type="button" onclick="clearout();">Clear output</button>
 <br><br>
-<button class="btn btn-primary" type="button" onclick="toggle('newscoutinfo')">New Scout</button>
+<button class="btn btn-primary" type="button" onclick="nsshow();">New Scout</button>
 <br><br>
-<input id="scout" type="text" placeholder="Scout Name"></input>
-<button class="btn btn-primary" type="button" onclick="history();">View Advancement</button>
+<span id="historybox" style="display:block;">
+    <input id="scout" type="text" placeholder="Scout Name"></input>
+    <button class="btn btn-primary" type="button" onclick="history();">View Advancement</button>
+</span>
 <br>
 <span id="newscoutinfo" style="display:none;">
     <br><br>
@@ -24,7 +26,6 @@
 <hr>
 <p id='output'></p>
 <script>
-    block(md);
     function toggle(id) {
       var x = document.getElementById(id);
       if (x.style.display === "none") {
@@ -90,5 +91,15 @@
         clearInputField("scoutname");
         clearInputField("scoutusername")
         clearInputField("scoutpassword")
+        unBlock("historybox");
+        //clearout();
+        unBlock("md");
+        block("newscoutinfo");
+      }
+      function nsshow() {
+          unBlock("newscoutinfo");
+          block("historybox");
+          block("md");
+          clearout();
       }
     </script>
