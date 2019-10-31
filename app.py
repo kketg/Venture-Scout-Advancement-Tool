@@ -126,6 +126,10 @@ def adv(un, passw):
 def isreal(un):
     return str(db.isReal(un))
 
+@app.route("/changepass/<un>/<old>/<new>/")
+def changepass(un,old,new):
+    return str(db.changepassword(un,old,new))
+
 # Return todo pg:
 @app.route("/myadvancement")
 def myad():
@@ -140,9 +144,10 @@ def myad():
             header="Stats for " + db.getRealName(un),
             body="<h3>Complete: </h3><hr>"
             + done
-            + "<br><h3>Incomplete:</h3>"
+            + "<br><h3>Incomplete:</h3><hr>"
             + todos,
             style=style(),
+            username = un,
             sensitive=pl.gethtml("user_settings")
         )
     else:

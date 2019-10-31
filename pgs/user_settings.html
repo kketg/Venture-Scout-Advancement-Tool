@@ -1,0 +1,24 @@
+<h3>Change your password</h3>
+<input id="oldpassword" type="password" placeholder="Old Password" style="margin-left:8px;"></input>
+<input id="newpassword" type="password" placeholder="New Password" style="margin-left:8px;"></input>
+<br><br>
+<button class="btn btn-danger" type="button" onclick="changeboi()" style="margin-left:8px;">Change Password</button>
+<hr>
+<p id="output"></p>
+<script>
+    function httpGet(theUrl)
+    {
+        console.clear();
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+        xmlHttp.send( null );
+        return xmlHttp.responseText;
+    }
+    function changeboi(){
+        var username = document.getElementById("hidden").innerHTML;
+        var oldpass = document.getElementById("oldpassword").value;
+        var newpass = document.getElementById("newpassword").value;
+        document.getElementById("output").innerHTML = httpGet("/changepass/" + username + "/" + oldpass + "/" + newpass + "/");
+        document.location.reload();
+    }
+</script>
