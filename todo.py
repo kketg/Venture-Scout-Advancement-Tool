@@ -28,7 +28,7 @@ class td:
         todos = """"""
 
         for rank in notc:
-            if not self.dbm.checkrankcomplete(un,rank):
+            if not self.dbm.checkrankcomplete(un, rank):
                 this = "<h4>" + rank + " todo:</h4><br><ul>"
                 # Display all incomplete reqs for rank
                 this_td = self.dbm.getincomplete(un, rank)
