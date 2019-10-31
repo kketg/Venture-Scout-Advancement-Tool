@@ -122,11 +122,9 @@ def adv(un, passw):
         #    style=style(),
         # )
 
-
 @app.route("/isreal/<un>")
 def isreal(un):
     return str(db.isReal(un))
-
 
 # Return todo pg:
 @app.route("/myadvancement")
@@ -142,9 +140,10 @@ def myad():
             header="Stats for " + db.getRealName(un),
             body="<h3>Complete: </h3><hr>"
             + done
-            + "<br><h3>Incomplete:</h3><hr>"
+            + "<br><h3>Incomplete:</h3>"
             + todos,
             style=style(),
+            sensitive=pl.gethtml("user_settings")
         )
     else:
         return render_template(
@@ -171,6 +170,7 @@ def allranks():
         footer="<p>Data - 2019</p>",
         style=style(),
     )
+
 
 
 ## END NON-ADMIN FUNCTIONS ##
