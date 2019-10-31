@@ -16,7 +16,7 @@
 
     <title>Venture Advancement - {{type}} Sign-in</title>
   </head>
-  <body>
+  <body id="bode">
     <div id="heading">
       <a href="/">
         <img src="https://upload.wikimedia.org/wikipedia/en/thumb/6/69/Venturing.svg/1200px-Venturing.svg.png" style="width:128px;height:128px;">
@@ -37,6 +37,13 @@
     </div>
 
     <script>
+    const wage = document.getElementById('bode');
+    wage.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            doauth();
+    }
+    });
+
       function doauth() {
         var username = document.getElementById('user').value;
         var password = document.getElementById('password').value;

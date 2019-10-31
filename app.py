@@ -122,9 +122,11 @@ def adv(un, passw):
         #    style=style(),
         # )
 
+
 @app.route("/isreal/<un>")
 def isreal(un):
     return str(db.isReal(un))
+
 
 # Return todo pg:
 @app.route("/myadvancement")
