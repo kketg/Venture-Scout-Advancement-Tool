@@ -167,7 +167,7 @@ def allranks():
             if line != "\n" and line != " " and line != "":
                 thisrank += "<li><p>" + line + "</p></li>"
         thisrank += "</ul><hr>"
-        bodi += "<h3>" + rank + "</h3><br>" + thisrank
+        bodi += "<h3>" + rank.capitalize() + ":</h3><br>" + thisrank
     return render_template(
         "template.html",
         header="All venture ranks",
@@ -229,6 +229,7 @@ def m_portal():
 @app.route("/md/<un>/<rank>/<req>/")
 def md(un, rank, req):
     status = db.markcomplete(un, rank, req)
+    db.sanitize(un)
     return render_template("simple.html", body="<p>" + status + "</p>")
 
 
@@ -241,6 +242,7 @@ def sm_scout_display(un):
 
 @app.route("/ns/<un>/<sn>/<sp>")
 def addscout(un, sn, sp):
+    db.sanitize(un)
     stat = db.addscout(un, sp, sn)
     return render_template("simple.html", body="<p>" + stat + "</p>")
 
