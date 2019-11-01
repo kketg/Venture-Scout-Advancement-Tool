@@ -1,6 +1,6 @@
 <button class="btn btn-danger" type="button" onclick="clearout();">Clear output</button>
 <br><br>
-<button class="btn btn-primary" type="button" onclick="nsshow();">New Scout</button>
+<button class="btn btn-primary" type="button" onclick="nsshow();">New Venturer</button>
 <br><br>
 <span id="historybox" style="display:block;">
     <input id="scout" type="text" placeholder="Scout Name"></input>
@@ -12,16 +12,20 @@
     <button class="btn btn-success" type="button" onclick="nshide();">Back</button>
     <br>
     <br>
-    <input id="scoutname" type="text" placeholder="Scout's Real Name"></input>
-    <input id="scoutusername" type="text" placeholder="Scout's User ID"></input>
-    <input id="scoutpassword" type="password" placeholder="*****"></input>
-    <button class="btn btn-info" type="button" onclick="addscout();">Add new scout</button>
+    <input id="scoutname" type="text" placeholder="Venturer's Real Name"></input>
+    <input id="scoutusername" type="text" placeholder="Venturer's User ID"></input>
+    <input id="scoutpassword" type="password" placeholder="Venturer's Password"></input>
+    <button class="btn btn-info" type="button" onclick="addscout();">Add new venturer account</button>
 </span>
 <br><br>
-<button class="btn btn-info" type="button" onclick="unBlock('ads');">New advisor</button>
+<button class="btn btn-info" type="button" onclick="advAddShow();">New advisor</button>
 <span id="ads" style="display:none;">
-    <input id="adn" type="text" placeholder="Advisor username"></input>
-    <input id="adp" type="password" placeholder="Advisor password"></input>
+    <br>
+    <button class="btn btn-success" type="button" onclick="advAddHide();">Back</button>
+    <br>
+    <br>
+    <input id="adn" type="text" placeholder="Advisor User ID"></input>
+    <input id="adp" type="password" placeholder="Advisor Password"></input>
     <button class="btn btn-info" type="button" onclick="newAdvisor();">Add new advisor account</button>
 </span>
 <br><br>
@@ -67,6 +71,19 @@
     function act(url) {
         append(httpGet(url));
     }
+    function advAddShow(){
+        clearout();
+        block("historybox");
+        block("md");
+        unBlock('ads');
+    }
+    function advAddHide(){
+        block("ads");
+        unBlock("historybox");
+        clearout();
+    }
+
+
     // /add/adv/un/passw
     function newAdvisor() {
         // adn

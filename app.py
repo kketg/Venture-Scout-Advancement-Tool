@@ -34,9 +34,9 @@ error_contact = "matt@mattcompton.me"
 
 def Alert(type):
     if type == "password":
-        return "Error: Incorrect Login"
+        return "Error: Incorrect login"
     elif type == "refresh":
-        return "Error: You refreshed the page"
+        return "Error: The page has been refreshed"
     elif type == "reqnotexist":
         return "Error: Couldn't find requirement"
     elif type == "reqcompleted":

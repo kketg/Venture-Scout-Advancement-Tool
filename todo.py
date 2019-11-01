@@ -29,7 +29,7 @@ class td:
 
         for rank in notc:
             if not self.dbm.checkrankcomplete(un, rank):
-                this = "<h4>" + rank + " todo:</h4><br><ul>"
+                this = "<h4>Requirements left for " + rank.capitalize() + ":</h4><br><ul>"
                 # Display all incomplete reqs for rank
                 this_td = self.dbm.getincomplete(un, rank)
                 for td in this_td:
@@ -43,7 +43,7 @@ class td:
         if complete:
             done += "<ul>"
             for rank in complete:
-                done += "<li><p>" + rank + "</p></li>"
+                done += "<li><p>" + rank.capitalize() + "</p></li>"
             done += "</ul>"
         else:
             done += "<p>Sorry, no ranks complete. :(</p>"
