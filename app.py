@@ -207,7 +207,7 @@ def ad_redirect(username, password):
         )
     else:
         return render_template(
-            "signin.html", type="admin", alert=Alert("admin"), style=style()
+            "signin.html", type="admin", alert=Alert("password"), style=style()
         )
 
 
