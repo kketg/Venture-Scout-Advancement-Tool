@@ -80,6 +80,7 @@
     function advAddHide(){
         block("ads");
         unBlock("historybox");
+        unBlock("md");
         clearout();
     }
 
@@ -93,7 +94,7 @@
         var pw = document.getElementById("adp").value;
         var url = "/add/adv/" + un + "/" + pw;
         append(act(url));
-        block('ads');
+        advAddHide();
     }
     function markdone() {
         var rank = document.getElementById("rank").value;
@@ -129,12 +130,10 @@
         //clearInputField("scoutname");
         clearInputField("scoutusername")
         clearInputField("scoutpassword")
-        unBlock("historybox");
-        clearout();
-        unBlock("md");
+        nshide();
         document.getElementById("scout").value = scout;
         history();
-        block("newscoutinfo");
+
     }
     function nsshow() {
         unBlock("newscoutinfo");
