@@ -23,7 +23,17 @@
       </p>
    </span>
    <span id="License">
-      Venture Scout Advancement Tool is licensed under the Mozilla Public License 2.0
+      <h3>
+         License & Copyright Notice
+      </h3>
+      <p>
+         Copyright (c) 2019, Kristofer Ter-Gabrielyan. All Rights Reserved.
+         <hr>
+         Permission to modify and redistribute is granted under the terms of the Mozilla Public License 2.0
+         <hr>
+         Venture Scout Advancement Tool uses the open source library flask, which is licensed under the BSD 3-Clause license.
+         See NOTICES.txt for attribution under the terms of the license.
+      </p>
    </span>
 </div>
 
