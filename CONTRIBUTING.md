@@ -18,6 +18,5 @@ If the change is:
 * A functional change(changing the way the program works), please describe the reason, what functions of the program were changed, and how.
 
 ### Author Contact
-kketg03@gmail.com
-<br>
-matt@mattcomptom.me
+* kketg03@gmail.com
+* matt@mattcomptom.me
