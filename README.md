@@ -1,7 +1,7 @@
-# VenturyBoi
-## Main idea:
-* Web based UI similar to the portal boi
-* Depending on user login, either display the scout's personal advancement page, or display a UI to edit the advancement achievements of scouts (assuming this login is admin)
+<h1 align="center">
+   Venture Scout Advancement Tool
+</h1>
+## A web application that manages a local database of venturers and their ranks.
 ## Todo:
 * Error handling for admin thingies
 * Also need to make an admin sign-up page, with like a crew number function maybe?
