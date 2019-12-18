@@ -46,6 +46,6 @@ class td:
                 done += "<li><p>" + rank.capitalize() + "</p></li>"
             done += "</ul>"
         else:
-            done += "<p>Sorry, no ranks complete. :(</p>"
+            done += "<p>No ranks complete</p>"
 
         return (done, todos)
