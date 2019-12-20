@@ -1,3 +1,5 @@
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/kketg/VenturyBoi) 
+
 <div id="header" align="center">
    <img src="https://github.com/kketg/Venture-Scout-Advancement-Tool/raw/master/VentureIcon.png" width="256px" height="256px">
    <h1>
