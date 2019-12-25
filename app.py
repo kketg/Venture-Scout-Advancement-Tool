@@ -122,13 +122,16 @@ def adv(un, passw):
         #    style=style(),
         # )
 
+
 @app.route("/isreal/<un>")
 def isreal(un):
     return str(db.isReal(un))
 
+
 @app.route("/changepass/<un>/<old>/<new>/")
-def changepass(un,old,new):
-    return str(db.changepassword(un,old,new))
+def changepass(un, old, new):
+    return str(db.changepassword(un, old, new))
+
 
 # Return todo pg:
 @app.route("/myadvancement")
@@ -147,8 +150,8 @@ def myad():
             + "<br><h3>Incomplete:</h3><hr>"
             + todos,
             style=style(),
-            username = un,
-            sensitive=pl.gethtml("user_settings")
+            username=un,
+            sensitive=pl.gethtml("user_settings"),
         )
     else:
         return render_template(
@@ -175,7 +178,6 @@ def allranks():
         footer="<p>Data - 2019</p>",
         style=style(),
     )
-
 
 
 ## END NON-ADMIN FUNCTIONS ##
@@ -245,6 +247,16 @@ def addscout(un, sn, sp):
     db.sanitize(un)
     stat = db.addscout(un, sp, sn)
     return render_template("simple.html", body="<p>" + stat + "</p>")
+
+
+@app.route("/rankinfo/<rank>/<requirement>/")
+def getinfos(rank, requirement):
+    return render_template(
+        "template.html",
+        header="" + rank.capitalize() + " requirement #" + requirement,
+        body=rm.getdetails(rank, requirement),
+        style=style(),
+    )
 
 
 if __name__ == "__main__":

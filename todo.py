@@ -25,18 +25,30 @@ class td:
         # for each rank that's in the incomplete list, add to list to display
         # want to replace with tables at some point
         # see: https://www.w3schools.com/html/html_tables.asp
-        todos = """"""
+        todos = """<table id="bodi" class="table"><tr><th>Rank</th><th>Requirement</th><th>Desc.</th></tr>"""
 
         for rank in notc:
             if not self.dbm.checkrankcomplete(un, rank):
-                this = "<h4>Requirements left for " + rank.capitalize() + ":</h4><br><ul>"
+                # <tr> <td>#</td> </tr>
                 # Display all incomplete reqs for rank
                 this_td = self.dbm.getincomplete(un, rank)
                 for td in this_td:
                     if td != " " and td != "" and td != "\n":
-                        this += "<li><p>" + td + "</p></li>"
-                this += "</ul>"
-                todos += this + "<hr>"
+                        todos += (
+                            "<tr><td>"
+                            + rank.capitalize()
+                            + "</td><td>"
+                            + td
+                            + "</td><td>"
+                            + '<a href="/rankinfo/'
+                            + rank
+                            + "/"
+                            + td
+                            + '/">Details</a>'
+                            + "</td></tr>"
+                        )
+
+        todos += "</table>"
 
         # for each complete rank, add to list
         done = """"""

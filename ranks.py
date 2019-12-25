@@ -57,6 +57,15 @@ class rankload:
                         nums.append(take_two)
         return nums
 
+    def getdetails(self, rank, requirement):
+        file = self.path + self.s + rank + ".txt"
+        lines = self.getlines(file)
+        for line in lines:
+            if requirement in line:
+                # has the # we want
+                split = line.split(":")
+                return str(split[1])
+
 
 if __name__ == "__main__":
     r = rankload()
