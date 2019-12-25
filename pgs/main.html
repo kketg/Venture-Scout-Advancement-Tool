@@ -1,12 +1,14 @@
-<form action="/ranks">
-    <button class="btn btn-success" type="submit">Venturer Ranks</button>
-</form>
-<br>
-<form action="/signin/admin/">
-    <button class="btn btn-primary" type="submit">Advisor login</button>
-</form>
-<br>
-<form action="/signin/user">
+<div id="btnOuter">
+<form id="btnInner" action="/signin/user">
     <button class="btn btn-primary" bttype="submit">Venturer login</button>
 </form>
+<form id="btnInner" action="/ranks">
+    <button class="btn btn-success" type="submit">Venturer Ranks</button>
+</form>
+<form id="btnInner" action="/signin/admin/">
+    <button class="btn btn-primary" type="submit">Advisor login</button>
+</form>
+</div>
+
+
 
