@@ -8,7 +8,7 @@
 </h1>
 
 <p align="center">
-   <img src="https://img.shields.io/badge/license-MPL%202.0-green?style=flat-square">
+   <img src="https://img.shields.io/badge/license-MPL--2.0-brightgreen?style=flat-square">
    <img src="https://img.shields.io/github/manifest-json/v/kketg/Venture-Scout-Advancement-Tool?style=flat-square">
    <img src="https://img.shields.io/badge/Build-Functional-orange?style=flat-square">
 </p>
