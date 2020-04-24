@@ -1,14 +1,21 @@
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/kketg/VenturyBoi) 
+<p align="center">
+   <img src="VentureIcon.png" width="256px" height="256px">
+</p>
 
-<div id="header" align="center">
-   <img src="https://github.com/kketg/Venture-Scout-Advancement-Tool/raw/master/VentureIcon.png" width="256px" height="256px">
-   <h1>
+
+<h1 align="center">
       Venture Scout Advancement Tool
-   </h1>
-   <h2>
-      A web application that manages a local database of venturers and their ranks.
-   </h3>
-</div>
+</h1>
+
+<p align="center">
+   <img src="https://img.shields.io/badge/license-MPL%202.0-green?style=flat-square">
+   <img src="https://img.shields.io/github/manifest-json/v/kketg/Venture-Scout-Advancement-Tool?style=flat-square">
+   <img src="https://img.shields.io/badge/Build-Functional-orange?style=flat-square">
+</p>
+
+<h3 align="center">
+   A web application that manages a local database of venturers and their ranks.
+</h3>
 
 <div id="body" align="center">
    <span id="features">
