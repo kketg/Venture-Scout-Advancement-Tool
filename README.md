@@ -18,10 +18,10 @@
 </h3>
 
 
-<h3>
+<h3 align="center">
    Features
 </h3>
-<p>
+<p align="center">
    Locally deployed database of venturers and advisors, allowing for an individualized experience for each crew.
    <br><br>
    Simple interface to view and manage advancement for venturers
@@ -31,10 +31,10 @@
 </p>
 <br><hr><br>
 
-<h3>
+<h3 align="center">
    License & Copyright Notice
 </h3>
-<p>
+<p align="center">
    Copyright (c) 2019, Kristofer Ter-Gabrielyan. All Rights Reserved.
 <br><br>
    Permission to modify and redistribute is granted under the terms of the Mozilla Public License 2.0
