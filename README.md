@@ -18,9 +18,9 @@
 </h3>
 
 
-<h3 align="center">
+<h2 align="center">
    Features
-</h3>
+</h2>
 <p align="center">
    Locally deployed database of venturers and advisors, allowing for an individualized experience for each crew.
    <br><br>
@@ -29,11 +29,11 @@
    Secure authentication and account system
    <br><br>
 </p>
-<br><hr><br>
+<br><br>
 
-<h3 align="center">
+<h2 align="center">
    License & Copyright Notice
-</h3>
+</h2>
 <p align="center">
    Copyright (c) 2019, Kristofer Ter-Gabrielyan. All Rights Reserved.
 <br><br>
