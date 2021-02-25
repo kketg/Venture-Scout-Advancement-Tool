@@ -261,9 +261,6 @@ def getinfos(rank, requirement):
 
 if __name__ == "__main__":
 
-    # Run black linter to ficc any bad code
-    os.system("python lint.py")
-
     db.addscout("dummyscout", "samplepassword", "John Doe")
 
     app.run(host="0.0.0.0", port="9090", debug=True)
